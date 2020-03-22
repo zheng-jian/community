@@ -18,9 +18,6 @@ public class PublishController {
     @Resource
     QuestionMapper questionMapper;
 
-    @Resource
-    UserMapper userMapper;
-
     @GetMapping("/publish")
     public String publish(){
         return "publish";
