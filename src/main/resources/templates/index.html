@@ -20,8 +20,9 @@
             <div class="media" th:each="question : ${pagination.questions}">
                 <img th:src="${question.user.pictureUrl}" class="media-object rounded-circle" alt="...">
                 <div class="media-body">
-                    <h5 class="mt-0" th:text="${question.title}"></h5>
-                    <span th:text="${question.description}"></span><br>
+                    <h5 class="mt-0">
+                        <a th:href="@{'/question/' + ${question.id}}" th:text="${question.title}"></a>
+                    </h5>
                     <span class="text-desc"><span th:text="${question.commentCount}"></span> comments · <span th:text="${question.viewCount}"></span> views ·
                     <span th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"></span></span>
                 </div>
