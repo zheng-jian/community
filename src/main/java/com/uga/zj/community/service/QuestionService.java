@@ -47,6 +47,7 @@ public class QuestionService  {
 
     }
 
+    // user's questions when he clicks profile
     public PaginationDTO list(Integer userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalCount = questionMapper.countByUserId(userId);
@@ -80,5 +81,17 @@ public class QuestionService  {
         questionDTO.setUser(user);
 
         return questionDTO;
+    }
+
+    public void createOrUpdate(Question question) {
+        if(question.getId()==null){
+            question.setGmtCreate(System.currentTimeMillis());
+            question.setGmtModified(System.currentTimeMillis());
+            questionMapper.create(question);
+        }
+        else{
+            question.setGmtModified(System.currentTimeMillis());
+            questionMapper.update(question);
+        }
     }
 }
